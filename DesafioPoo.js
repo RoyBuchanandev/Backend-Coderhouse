@@ -17,7 +17,7 @@ class ProductManager {
         this.price = price;
         this.thumbnail = thumbnail;
         this.stock = stock
-        this.code = ProductManager.counter += 1; // redefino valor de counter como id para que sea mas facil de interpretar 
+        this.id = ProductManager.counter += 1; // redefino valor de counter como id para que sea mas facil de interpretar 
     }
 
     addProducts() { // metodo para pushear todos los campos dentro del array vacio product + id autoincrementado + validacion de no repetir id + validacion campos empty
