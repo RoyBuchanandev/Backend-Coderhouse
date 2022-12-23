@@ -1,3 +1,5 @@
+const fs = require('node:fs');
+
 class ProductManager {
     static counter = 0;
     products = [];
@@ -45,11 +47,20 @@ class ProductManager {
     }
 
     writeToFile() {
-        fs.writeFileSync(this.path, JSON.stringify(this.products));
+        try {
+            fs.writeFileSync(this.path, JSON.stringify(this.products));
+        } catch (error) {
+            throw new Error(error)
+        }
     }
 
     readFromFile() {
-        this.products = JSON.parse(fs.readFileSync(this.path));
+        try {
+            this.products = JSON.parse(fs.readFileSync(this.path));
+        } catch (error) {
+            throw new Error(error)
+        }
+
     }
 }
 
@@ -70,3 +81,6 @@ console.log(productManager.getProductById(1));
 
 productManager.deleteProduct(1);
 console.log(productManager.getProductById(1));
+
+productManager.writeToFile()
+productManager.readFromFile()
